@@ -27,14 +27,6 @@ func labInvF(t float64) float64 {
 	return (116*t - 16) / kappa
 }
 
-// chromaBisectUpdate updates [lo,hi] during gamut chroma bisection.
-func chromaBisectUpdate(inGamut bool, lo, hi, mid float64) (float64, float64) {
-	if inGamut {
-		return lo, mid
-	}
-	return mid, hi
-}
-
 // XYZToLab converts CIE XYZ (D65) to CIELAB. L is in [0,100], a and b
 // are unbounded in theory.
 func XYZToLab(x, y, z float64) (float64, float64, float64) {

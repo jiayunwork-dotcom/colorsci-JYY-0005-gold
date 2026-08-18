@@ -46,7 +46,11 @@ func ClampLabToGamut(L, a, b float64) (float64, float64, float64) {
 	for i := 0; i < 40; i++ {
 		mid := (lo + hi) / 2
 		aL, aA, aB := LChToLab(L, c*mid, h)
-		lo, hi = chromaBisectUpdate(LabInGamut(aL, aA, aB), lo, hi, mid)
+		if LabInGamut(aL, aA, aB) {
+			lo = mid
+		} else {
+			hi = mid
+		}
 	}
 	return LChToLab(L, c*lo, h)
 }
